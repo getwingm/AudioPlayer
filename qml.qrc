@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>images/icon-album-cover.png</file>
+        <file>Button.qml</file>
+        <file>images/icon-next.png</file>
+        <file>images/icon-pause.png</file>
+        <file>images/icon-play.png</file>
+        <file>images/icon-previous.png</file>
+        <file>ProgressSlider.qml</file>
     </qresource>
 </RCC>
