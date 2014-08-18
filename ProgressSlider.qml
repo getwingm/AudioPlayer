@@ -49,6 +49,7 @@ Rectangle {
         id: mouseArea1
         anchors.fill: parent
         property bool isPressed: false
+        onClicked: positionChanged(mouse)
         onPositionChanged: {
             if(mouseX >= 0 && mouseX <= parent.width){
                 slider.width = mouseX

@@ -8,5 +8,6 @@
         <file>images/icon-play.png</file>
         <file>images/icon-previous.png</file>
         <file>ProgressSlider.qml</file>
+        <file>CurrentScreen.qml</file>
     </qresource>
 </RCC>
