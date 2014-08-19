@@ -1,8 +1,9 @@
 TEMPLATE = app
 
-QT += qml quick multimedia
+QT += qml quick multimedia widgets
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    player.cpp
 
 RESOURCES += qml.qrc
 
@@ -13,3 +14,6 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 OTHER_FILES +=
+
+HEADERS += \
+    player.h

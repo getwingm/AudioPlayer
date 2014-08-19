@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.0
 
 Rectangle {
+    id: root
     anchors.left: parent.left
     anchors.right: parent.right
     height: 62
@@ -48,15 +49,15 @@ Rectangle {
     MouseArea {
         id: mouseArea1
         anchors.fill: parent
-        property bool isPressed: false
         onClicked: positionChanged(mouse)
         onPositionChanged: {
-            if(mouseX >= 0 && mouseX <= parent.width){
+            if(mouseX >= 0 && mouseX <= root.width){
                 slider.width = mouseX
-                parent.positionChange(slider.width / parent.width)
+                parent.positionChange(slider.width / root.width)
             }
         }
     }
+
     function changePosition(pos){
         slider.width = parent.width * pos
     }

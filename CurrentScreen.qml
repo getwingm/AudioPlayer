@@ -8,37 +8,40 @@ Rectangle {
     signal previous
     signal next
     signal seek(real pos)
+    signal openFile
     property alias coverSourse: albumCover.source
     property int durationInt
     property string albumTitle: ""
     property string artist: ""
-    property string name: ""
+    property string title: ""
 
     function changePosition(time){
         position.text = millsecToStr(time)
         slider.changePosition(time/root.durationInt)
     }
+
     function millsecToStr(time){
         var intsec = Math.round((time%60000)/1000)
         var sec = intsec<10 ? "0"+intsec.toString() : intsec.toString()
 
         return Math.round(time/60000).toString()+":"+sec
     }
+
     function setDuration(time){
         durationInt = time
         duration.text = millsecToStr(time)
     }
+
     function setPlaying(isPlaying){
         if(isPlaying)
             playButton.iconSource = "images/icon-pause.png"
         else
             playButton.iconSource = "images/icon-play.png"
-
     }
 
     onAlbumTitleChanged: albumTitleText.text = "Album: " + albumTitle
     onArtistChanged: artistText.text = "Artist: " + artist
-    onNameChanged: nameText.text = "Name: " + name
+    onTitleChanged: titleText.text = "Name: " + title
 
     width: 480
     height: 640
@@ -145,20 +148,33 @@ Rectangle {
         id: artistText
         color: "#ffffff"
         text: "Artist: "
-        anchors.bottom: nameText.top
+        anchors.bottom: titleText.top
         anchors.bottomMargin: 20
         font.pointSize: 16
         anchors.left: parent.left
         anchors.leftMargin: 0
     }
     Text {
-        id: nameText
+        id: titleText
         color: "#ffffff"
-        text: "Name: "
+        text: "Title: "
         anchors.bottom: position.top
         anchors.bottomMargin: 20
         font.pointSize: 16
         anchors.left: parent.left
         anchors.leftMargin: 0
+    }
+
+    MouseArea {
+        id: mouseArea1
+        anchors.bottom: albumTitleText.top
+        anchors.bottomMargin: 20
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        onClicked: root.openFile()
     }
 }

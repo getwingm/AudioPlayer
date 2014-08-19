@@ -1,7 +1,7 @@
 import QtQuick 2.2
 import QtQuick.Window 2.1
 import QtQuick.Dialogs 1.2
-import QtMultimedia 5.0
+import Audio 1.0
 
 Window {
     id: window
@@ -9,22 +9,22 @@ Window {
     width: 480
     height: 640
 
-    Audio{
+    Player{
         id:player
-        source: "file:///mnt/sdcard/Sounds/Nirvana - Smells Like Teen Spirit.mp3"
-        onPositionChanged:{
-            currentScreen.changePosition(player.position)
-            currentScreen.setDuration(player.duration)
-        }
-        onSourceChanged:
-            currentScreen.albumTitle = metaData.albumTitle.toString()
+        onPositionChanged: currentScreen.changePosition(pos)
+        onDurationChanged: currentScreen.setDuration(dur)
+        onTitleChanged: currentScreen.title = player.title
+        onAlbumTitleChanged: currentScreen.albumTitle = player.albumTitle
+        onAlbumArtistChanged: currentScreen.artist = player.albumArtist
+        onStateChanged: currentScreen.setPlaying(isPlaying)
     }
 
     CurrentScreen{
         id:currentScreen
         onPlayPause: {
-                player.play()
+                player.playPause()
         }
-        onSeek: {player.seek(pos*player.duration)}
+        onSeek: player.seek(pos)
+        onOpenFile: player.setFile()
     }
 }
