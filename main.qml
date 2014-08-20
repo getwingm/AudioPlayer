@@ -25,6 +25,40 @@ Window {
                 player.playPause()
         }
         onSeek: player.seek(pos)
-        onOpenFile: player.setFile()
+        onNext: player.next()
+        onPrevious: player.previous()
+        onOpenSettings: {
+            settings.closeAreaWidth = window.width - settings.width
+            settingsOpen.start()
+        }
+    }
+
+    Settings{
+        id: settings
+        width: window.width*5/12
+        x: -width
+        onOpenFilesClicked: player.addFiles()
+        onOpenDirectoryClicked: player.addDir()
+        onRandomChanged: player.changeRandom(settings.random)
+        onRepeatChanged: player.changeRepeat(settings.repeat)
+        onCloseClicked: {
+            settings.closeAreaWidth = 0
+            settingsClose.start()
+        }
+    }
+
+    NumberAnimation {
+        id:settingsOpen
+        target: settings
+        property: "x"
+        duration: 200
+        to:0
+    }
+    NumberAnimation {
+        id:settingsClose
+        target: settings
+        property: "x"
+        duration: 200
+        to: -settings.width
     }
 }

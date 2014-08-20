@@ -9,5 +9,17 @@
         <file>images/icon-previous.png</file>
         <file>ProgressSlider.qml</file>
         <file>CurrentScreen.qml</file>
+        <file>Settings.qml</file>
+        <file>SettingButton.qml</file>
+        <file>images/icon-addfolder.png</file>
+        <file>images/icon-addfile.png</file>
+        <file>images/icon-loopblack.png</file>
+        <file>images/icon-loop.png</file>
+        <file>images/icon-loopone.png</file>
+        <file>images/icon-random.png</file>
+        <file>images/icon-once.png</file>
+        <file>images/icon-randomblack.png</file>
+        <file>images/icon-indentleft.png</file>
+        <file>images/icon-indentright.png</file>
     </qresource>
 </RCC>

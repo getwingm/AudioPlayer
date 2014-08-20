@@ -3,7 +3,8 @@ TEMPLATE = app
 QT += qml quick multimedia widgets
 
 SOURCES += main.cpp \
-    player.cpp
+    caudioobject.cpp \
+    Player.cpp
 
 RESOURCES += qml.qrc
 
@@ -16,4 +17,5 @@ include(deployment.pri)
 OTHER_FILES +=
 
 HEADERS += \
-    player.h
+    player.h \
+    caudioobject.h

@@ -8,7 +8,8 @@ Rectangle {
     signal previous
     signal next
     signal seek(real pos)
-    signal openFile
+    signal openSettings
+    signal openPlaylist
     property alias coverSourse: albumCover.source
     property int durationInt
     property string albumTitle: ""
@@ -166,15 +167,50 @@ Rectangle {
     }
 
     MouseArea {
-        id: mouseArea1
+        id: leftMouseArea
+        z: 1
+        anchors.right: albumCover.left
+        anchors.rightMargin: 0
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        anchors.bottom: albumTitleText.top
+        anchors.bottomMargin: 20
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        onClicked: root.openSettings()
+
+        Image {
+            width: 32
+            height: 32
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 0
+            source: "images/icon-indentleft.png"
+        }
+    }
+
+    MouseArea {
+        id: rightMouseArea
+        z: 1
+        anchors.left: albumCover.right
+        anchors.leftMargin: 0
         anchors.bottom: albumTitleText.top
         anchors.bottomMargin: 20
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.right: parent.right
         anchors.rightMargin: 0
-        anchors.left: parent.left
-        anchors.leftMargin: 0
-        onClicked: root.openFile()
+        onClicked: root.openPlaylist()
+
+        Image {
+            width: 32
+            height: 32
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            source: "images/icon-indentright.png"
+        }
     }
+
+
 }

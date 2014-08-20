@@ -2,9 +2,12 @@
 #define PLAYER_H
 
 #include <QObject>
-#include <QMediaMetaData>
+#include <QFileInfo>
+#include <QDirIterator>
 #include <QtMultimedia>
 #include <QFileDialog>
+#include <QMessageBox>
+#include "caudioobject.h"
 
 class Player : public QObject
 {
@@ -33,19 +36,28 @@ public:
 public slots:
     Q_INVOKABLE void seek(qreal pos);
     Q_INVOKABLE void playPause();
-    Q_INVOKABLE void setFile();
+    Q_INVOKABLE void addFiles();
+    Q_INVOKABLE void addDir();
+    Q_INVOKABLE void previous();
+    Q_INVOKABLE void next();
+    Q_INVOKABLE void changeRandom(bool state);
+    Q_INVOKABLE void changeRepeat(QString state);
 
 private slots:
-    void startPlaying(QString url);
     void metaDataChanged();
     void playerStateChanged();
+    void addMedia(QStringList list);
 
 private:
     QMediaPlayer *player;
+    QMediaPlaylist *playlist;
+    QList<CAudioObject*> musicList;
+
     QFileDialog *dialog;
     QString m_title;
     QString m_albumTitle;
     QString m_albumArtist;
+    QMediaPlaylist::PlaybackMode memory;
 };
 
 #endif // PLAYER_H
